@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
+
+version: "1.0"
+
+branch_merge_requests:
+  steps:
+    - branch_package:
+        source_project: home:bchatha:juptune
+        source_package: "%{SCM_REPOSITORY_NAME}" # e.g. "juptune" from "Juptune/juptune"
+        target_project: home:bchatha:juptune
+  filters:
+    event: pull_request
+
+branch_tags:
+  steps:
+    - branch_package:
+        source_project: home:bchatha:juptune
+        source_package: "%{SCM_REPOSITORY_NAME}"
+        target_project: home:bchatha:juptune
+  filters:
+    event: tag_push
+
+build:
+  steps:
+    # - trigger_services:
+    #     project: home:bchatha:juptune
+    #     package: "%{SCM_REPOSITORY_NAME}"
+    - rebuild_package:
+        project: home:bchatha:juptune
+        package: "%{SCM_REPOSITORY_NAME}"
+  filters:
+    event: push
