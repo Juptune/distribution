@@ -22,9 +22,9 @@ branch_tags:
 
 build:
   steps:
-    # - trigger_services:
-    #     project: home:bchatha:juptune
-    #     package: "%{SCM_REPOSITORY_NAME}"
+    - trigger_services:
+        project: home:bchatha:juptune
+        package: "%{SCM_REPOSITORY_NAME}"
     - rebuild_package:
         project: home:bchatha:juptune
         package: "%{SCM_REPOSITORY_NAME}"
